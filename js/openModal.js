@@ -1,3 +1,4 @@
+import { API_URL, PREFIX_PRODUCT } from './const.js'
 import {
 	modalProduct,
 	modalProductTitle,
@@ -6,14 +7,19 @@ import {
 	ingredientsList,
 	ingredientsCalories,
 	modalProductPriceCount,
+	modalProductBtn,
 } from './elements.js'
+import { getData } from './getData.js'
 
-export const openModal = (product) => {
+export const openModal = async (id) => {
+	const product = await getData(`${API_URL}${PREFIX_PRODUCT}/${id}`)
 	modalProductTitle.textContent = product.title
-	modalProductImage.textContent = product.image
+	modalProductImage.src = `${API_URL}/${product.image}`
 	ingredientsCalories.textContent = `${product.weight}г, ккал ${product.calories}`
 	modalProductDescription.textContent = product.description
 	modalProductPriceCount.textContent = product.price
+	modalProductBtn.dataset.idProduct = product.id
+
 	ingredientsList.textContent = ''
 
 	const ingredientsListItem = product.ingredients.map((item) => {
@@ -24,6 +30,5 @@ export const openModal = (product) => {
 	})
 
 	ingredientsList.append(...ingredientsListItem)
-
 	modalProduct.classList.add('modal_open')
 }
