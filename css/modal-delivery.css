@@ -8,6 +8,7 @@
   flex-direction: column;
   margin: 0 auto;
   height: 100%;
+  min-height: 366px;
   
 }
 
@@ -32,6 +33,10 @@
 
 .modal-delivery__fieldset-input:last-child {
   margin-bottom: 0;
+}
+
+.modal-delivery__fieldset-input__hide {
+  visibility: hidden;
 }
 
 .modal-delivery__input {
@@ -112,7 +117,8 @@
   .modal-delivery__fieldset-input {
     margin-bottom: 16px;
   }
-  
+
+ 
   .modal-delivery__input {
     height: 40px;
     padding: 12px;
